@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CrudWeb1</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  </head>
+
+  <body>
+    <div align="right" style="margin-right: 20px;">
+      <table>
+        <% if current_user %>
+          <tr>
+            <td>Welcome <font color="green"><%= current_user::username %></font></td>
+            <td><%= link_to "Log out", logout_path, method: 'delete', class: "btn btn-info" %></td>
+          </tr>
+      <% else %>
+          <tr>
+            <td><%= link_to "Login", login_path, class: "btn btn-warning" %></td>
+            <td><%= link_to "Sign up", signup_path, class: "btn btn-success" %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+    <div align="center">
+      <% if flash[:notice] %>
+        <div class="alert alert-info"><%= flash[:notice] %></div>
+      <% end %>
+      <%= yield %>  
+    </div>
+  </body>
+</html>

@@ -1,0 +1,14 @@
+<h1><%= @post.name %></h1>
+<table>
+	<tr>
+		<td><img src="<%= @post.image %>" alt="image_post"></td>
+		<td></td>
+		<td>
+			<p>Content: <%= @post.content %></p>
+			<p>Status: <%= @post.status %></p>
+			<p>Owner: <%= @post.user.username %></p>
+		</td>
+	</tr>
+</table>
+	
+<%= link_to "Back", root_path, class: "btn btn-success" %>

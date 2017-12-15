@@ -1,0 +1,30 @@
+<h1>Add New Post</h1>
+<%= form_for @post do |f| %>
+	<% if @post.errors.any? %>
+		<font color="red">
+			<% @post.errors.full_messages.each do |mess| %>
+				<%= mess %>
+			<% end %>
+		</font>
+	<% end %>
+	<table>
+		<tr>
+			<td>Name: </td>
+			<td><%= f.text_field :name %></td>
+		</tr>
+		<tr>
+			<td>Image: </td>
+			<td><%= f.file_field :image %></td>
+		</tr>
+		<tr>
+			<td>Content: </td>
+			<td><%= f.text_area :content %></td>
+		</tr>
+		<%= f.hidden_field :status, :value => @post.status %>
+		<%= f.hidden_field :user_id, :value => session[:user_id] %>
+		<tr>
+			<td></td>
+			<td><%= f.submit "Add new post" %></td>
+		</tr>
+	</table>
+<% end %>

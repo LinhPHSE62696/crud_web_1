@@ -1,0 +1,32 @@
+<h1>All Posts</h1>
+<% if @posts %>
+	<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Image</th>
+				<th>Content</th>
+				<% if current_user.is_editable? %>
+					<th>Edit</th>
+					<th>Disable</th>
+				<% end %>
+				<% if current_user.is_deletable? %>
+					<th>Delete</th>
+				<% end %>
+			</tr>
+		<% @posts.each do |post| %>
+			<tr>
+				<td><%= link_to post.name, post_path(post) %></td>
+				<td><img src="<%= post.image %>" alt="post-image" class="img-thumbnail"></td>
+				<td><%= post.content %></td>
+				<% if current_user.is_editable? %>
+					<th><%= link_to "Edit", edit_post_path(post), class: "btn btn-success" %></th>
+					<th><%= link_to "Disable", disable_path(post), :method => :post, class: "btn btn-warning" %></th>
+				<% end %>
+				<% if current_user.is_deletable? %>
+					<th><%= link_to "Delete", post, :method => :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %></th>
+				<% end %>
+			</tr>
+		<% end %>
+	</table>
+<% end %>
+<%= link_to "Add new Post", new_post_path, class: "btn btn-primary" %>
