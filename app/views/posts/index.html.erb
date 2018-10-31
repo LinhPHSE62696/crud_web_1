@@ -3,7 +3,6 @@
 	<table class="table">
 			<tr>
 				<th>Name</th>
-				<th>Image</th>
 				<th>Content</th>
 				<% if current_user.is_editable? %>
 					<th>Edit</th>
@@ -16,7 +15,6 @@
 		<% @posts.each do |post| %>
 			<tr>
 				<td><%= link_to post.name, post_path(post) %></td>
-				<td><img src="<%= post.image %>" alt="post-image" class="img-thumbnail"></td>
 				<td><%= post.content %></td>
 				<% if current_user.is_editable? %>
 					<th><%= link_to "Edit", edit_post_path(post), class: "btn btn-success" %></th>

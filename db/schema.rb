@@ -14,10 +14,11 @@ ActiveRecord::Schema.define(version: 20171214040308) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_stat_statements"
+  enable_extension "pg_buffercache"
 
   create_table "posts", force: :cascade do |t|
     t.string "name"
-    t.string "image"
     t.text "content"
     t.boolean "status"
     t.integer "user_id"

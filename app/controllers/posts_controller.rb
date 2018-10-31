@@ -18,7 +18,8 @@ class PostsController < ApplicationController
 
   def create
   	@post = Post.new(post_params)
-  	if @post.save
+		if @post.save
+			
   		redirect_to root_path, notice: "Add new post complete!"
   	else
   		render 'new'
